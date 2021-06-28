@@ -9,7 +9,7 @@ setParent $currentShelf;
 string $scriptLocation=`scriptLocation`;
 string $scriptName="iris Tool";
 string $irisIcon = $scriptLocation + "/scripts/icons/XYZ_icon.png";
-string $command="import irisTool\nreload (irisTool)\nirisTool.run()";
+string $command="import irisTool\ntry:\n    reload\nexcept NameError:\n    try:\n        from importlib import reload\n    except ImportError:\n        from imp import reload\nreload (irisTool)\nirisTool.run()";
 
 // Setup module
 python("import os");

@@ -10,12 +10,21 @@ from shiboken2 import wrapInstance
 import maya.OpenMaya as om
 
 import irisToolUi
+
+try:
+    reload
+except NameError:
+    try:
+        from importlib import reload
+    except ImportError:
+        from imp import reload
+
 reload (irisToolUi)
 
 
 def maya_main_window():
     main_window_ptr = omui.MQtUtil.mainWindow()
-    return wrapInstance(long(main_window_ptr), QtWidgets.QWidget)
+    return wrapInstance(int(main_window_ptr), QtWidgets.QWidget)
 
 class ControlMainWindow(QtWidgets.QWidget):
  
